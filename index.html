@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marvellous Literary Intelligence | Book Discovery and Marketing Strategist</title>
+<meta name="description" content="Understanding why books aren't being discovered. Marvellous Literary Intelligence helps authors close the visibility gap between their books and the readers who may value them.">
+<link rel="icon" type="image/png" href="Marvellous Literary Emblem.png">
+<style>
+/* ========== RESET AND BASE ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: #F8F6F0;
+  color: #252825;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== UTILITY ========== */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+img { max-width: 100%; display: block; }
+
+/* ========== TYPOGRAPHY ========== */
+h1, h2, h3, h4 { font-family: Georgia, "Times New Roman", Times, serif; color: #173D32; line-height: 1.25; font-weight: 700; }
+h1 { font-size: clamp(1.9rem, 4vw, 3rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); margin-bottom: 0.6em; }
+h3 { font-size: clamp(1.15rem, 2vw, 1.5rem); margin-bottom: 0.5em; }
+h4 { font-size: 1.1rem; }
+p { margin-bottom: 1.15em; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 1.05rem; }
+a { color: #173D32; text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+a:hover, a:focus { color: #B49A62; }
+a:focus-visible { outline: 2px solid #B49A62; outline-offset: 3px; }
+
+/* ========== SKIP LINK ========== */
+.skip-link {
+  position: absolute; top: -100%; left: 16px; background: #173D32; color: #F8F6F0;
+  padding: 8px 18px; border-radius: 0 0 6px 6px; z-index: 1000; font-size: 0.95rem; text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
+/* ========== HEADER AND NAV ========== */
+.site-header {
+  background-color: #173D32;
+  padding: 0;
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 3px solid #B49A62;
+}
+.header-inner {
+  max-width: 1140px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+}
+.brand {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 0; text-decoration: none;
+}
+.brand:hover { opacity: 0.92; }
+
+.brand-logo-wrap {
+  width: 54px; height: 54px;
+  background: #F8F6F0;
+  border-radius: 50%;
+  border: 2px solid #B49A62;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.brand-logo-wrap::after {
+  content: "LOGO";
+  position: absolute;
+  color: #173D32;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 700; font-size: 0.72rem; letter-spacing: 0.05em;
+  z-index: 0;
+}
+.brand-logo {
+  width: 100%; height: 100%; object-fit: contain;
+  position: relative; z-index: 1; padding: 4px;
+}
+
+.brand-text { display: flex; flex-direction: column; }
+.brand-name {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-weight: 700; color: #F8F6F0; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; line-height: 1.2;
+}
+.brand-tagline {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.68rem; color: #B49A62; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 2px;
+}
+
+.nav-toggle { display: none; }
+.nav-toggle-label {
+  display: none; cursor: pointer; padding: 10px; color: #F8F6F0; font-size: 1.6rem; line-height: 1;
+  user-select: none; -webkit-user-select: none;
+}
+.nav-toggle-label span { display: block; width: 26px; height: 3px; background: #F8F6F0; margin: 5px 0; border-radius: 2px; transition: 0.25s; }
+
+.main-nav ul {
+  list-style: none; display: flex; align-items: center; gap: 4px; flex-wrap: wrap;
+}
+.main-nav a {
+  display: block; padding: 18px 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.85rem; font-weight: 500; color: #F8F6F0; text-decoration: none;
+  letter-spacing: 0.03em; text-transform: uppercase; white-space: nowrap; transition: color 0.2s;
+}
+.main-nav a:hover, .main-nav a:focus { color: #B49A62; }
+.main-nav a.nav-cta {
+  background: #B49A62; color: #173D32; padding: 10px 18px; border-radius: 4px;
+  margin-left: 8px; font-weight: 600;
+}
+.main-nav a.nav-cta:hover { background: #a08850; color: #F8F6F0; }
+
+@media (max-width: 860px) {
+  .nav-toggle-label { display: block; position: absolute; right: 20px; top: 20px; z-index: 10; }
+  .header-inner { position: relative; }
+  .brand-logo-wrap { width: 44px; height: 44px; }
+  .brand-logo-wrap::after { font-size: 0.6rem; }
+  .main-nav {
+    width: 100%; max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+  }
+  .nav-toggle:checked ~ .main-nav { max-height: 600px; }
+  .main-nav ul { flex-direction: column; gap: 0; padding-bottom: 12px; }
+  .main-nav a { padding: 12px 0; }
+  .main-nav a.nav-cta { margin: 8px 0 4px; text-align: center; }
+}
+
+/* ========== HERO ========== */
+.hero {
+  background: linear-gradient(160deg, #173D32 0%, #1e4f42 45%, #245a4c 100%);
+  color: #F8F6F0;
+  padding: clamp(60px, 10vw, 110px) 0 clamp(50px, 8vw, 90px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(180,154,98,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero h1 { color: #F8F6F0; margin-bottom: 0.5em; }
+.hero h1 em { font-style: italic; color: #B49A62; }
+.hero-sub {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  max-width: 680px; margin: 0 auto 1.8em; color: rgba(248,246,240,0.88); line-height: 1.65;
+}
+.hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  display: inline-block; padding: 14px 30px; border-radius: 5px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.95rem; font-weight: 600; text-decoration: none; letter-spacing: 0.02em;
+  transition: background 0.25s, color 0.25s, transform 0.15s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 2px solid #B49A62; outline-offset: 3px; }
+.btn-primary { background: #B49A62; color: #173D32; }
+.btn-primary:hover { background: #a08850; color: #F8F6F0; }
+.btn-secondary { background: transparent; color: #F8F6F0; border: 2px solid rgba(248,246,240,0.5); }
+.btn-secondary:hover { border-color: #B49A62; color: #B49A62; }
+
+/* ========== SECTIONS ========== */
+.section { padding: clamp(48px, 7vw, 88px) 0; }
+.section--alt { background-color: #fff; }
+.section--dark { background-color: #173D32; color: #F8F6F0; }
+.section--dark h2, .section--dark h3 { color: #F8F6F0; }
+.section--dark a { color: #B49A62; }
+.section--muted { background-color: #eee9de; }
+.section-intro {
+  max-width: 720px; margin: 0 auto 2.5em; text-align: center;
+}
+.section-intro p { color: #555; }
+.section--dark .section-intro p { color: rgba(248,246,240,0.8); }
+
+.gold-line {
+  width: 60px; height: 3px; background: #B49A62; margin: 0 auto 1.5em; border: none;
+}
+.gold-line--left { margin: 0 0 1.5em; }
+
+/* ========== VISIBILITY PROBLEM ========== */
+.problem-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px; margin-top: 2em;
+}
+.problem-card {
+  background: #fff; border-radius: 8px; padding: 32px 28px;
+  border-left: 4px solid #B49A62;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.problem-card h3 { font-size: 1.15rem; margin-bottom: 0.5em; }
+.problem-card p { font-size: 0.97rem; color: #555; margin-bottom: 0; }
+
+/* ========== STORY GRID ========== */
+.story-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+}
+@media (max-width: 740px) { .story-grid { grid-template-columns: 1fr; gap: 28px; } }
+
+/* ========== DROP-IN IMAGE PLACEHOLDERS ==========
+   HOW IT WORKS:
+   Each .img-slot is a styled drop-in area. Inside it is an <img> tag pointing
+   to the exact filename shown below the slot. Save your real image file with
+   that exact name in the same folder as this HTML file, and it will appear.
+   If the image is missing, the styled placeholder stays visible so nothing
+   ever looks broken.
+================================================= */
+.img-slot {
+  background: linear-gradient(145deg, #ddd8ce 0%, #c9c3b6 100%);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+  display: flex; align-items: center; justify-content: center;
+}
+.img-slot::before {
+  content: "";
+  position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 1px dashed rgba(107,101,86,0.3); border-radius: 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+.img-slot .img-label {
+  position: absolute;
+  text-align: center;
+  color: #6b6556;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.82rem;
+  padding: 20px;
+  z-index: 1;
+  line-height: 1.4;
+}
+.img-slot .img-label strong {
+  display: block;
+  color: #173D32;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+.img-slot img {
+  position: relative;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 2;
+  background: transparent;
+}
+
+.aspect-16-9 { aspect-ratio: 16/9; }
+.aspect-4-3 { aspect-ratio: 4/3; }
+.aspect-3-2 { aspect-ratio: 3/2; }
+.aspect-1-1 { aspect-ratio: 1/1; }
+
+/* ========== SERVICE CARDS ========== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 28px;
+}
+.service-card {
+  background: #fff; border-radius: 10px; overflow: hidden;
+  box-shadow: 0 3px 16px rgba(0,0,0,0.06);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex; flex-direction: column;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.09); }
+.service-card .img-slot { border-radius: 0; }
+.service-card-body { padding: 24px 24px 28px; flex: 1; display: flex; flex-direction: column; }
+.service-card-body h3 { font-size: 1.15rem; }
+.service-card-body p { font-size: 0.95rem; color: #555; flex: 1; }
+.service-card-link {
+  display: inline-block; margin-top: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.9rem; font-weight: 600; color: #B49A62; text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.service-card-link::after { content: " \2192"; }
+.service-card-link:hover { color: #173D32; }
+
+/* ========== PROCESS STEPS ========== */
+.process-steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px; counter-reset: step;
+}
+.process-step {
+  text-align: center; padding: 28px 20px;
+  background: rgba(248,246,240,0.08); border-radius: 8px;
+  border: 1px solid rgba(248,246,240,0.12);
+}
+.process-step::before {
+  counter-increment: step;
+  content: counter(step);
+  display: flex; width: 44px; height: 44px; border-radius: 50%;
+  background: #B49A62; color: #173D32; font-weight: 700; font-size: 1.1rem;
+  align-items: center; justify-content: center; margin: 0 auto 16px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+.process-step h4 { color: #F8F6F0; margin-bottom: 0.4em; font-size: 1.05rem; }
+.process-step p { font-size: 0.9rem; color: rgba(248,246,240,0.75); margin-bottom: 0; }
+
+/* ========== SAMPLE PREVIEW ========== */
+.sample-preview {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+}
+@media (max-width: 740px) { .sample-preview { grid-template-columns: 1fr; } }
+
+/* ========== RESOURCE PREVIEW ========== */
+.resource-list {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.resource-item {
+  padding: 24px; border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08); background: #fff;
+}
+.resource-item h4 { font-size: 1rem; margin-bottom: 0.4em; }
+.resource-item p { font-size: 0.9rem; color: #666; margin-bottom: 0; }
+
+/* ========== HOW WE WORK ========== */
+.how-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+.how-card {
+  background: #fff; border-radius: 8px; padding: 28px 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+  border-top: 3px solid #B49A62;
+}
+.how-card h3 { font-size: 1.1rem; }
+.how-card p { font-size: 0.95rem; color: #555; margin-bottom: 0; }
+
+/* ========== ABOUT PREVIEW ========== */
+.about-preview {
+  display: grid; grid-template-columns: 5fr 4fr; gap: 40px; align-items: center;
+}
+@media (max-width: 740px) { .about-preview { grid-template-columns: 1fr; } }
+
+/* ========== CTA BANNER ========== */
+.cta-banner {
+  background: linear-gradient(145deg, #173D32, #1e4f42);
+  border-radius: 12px; padding: clamp(36px, 5vw, 56px);
+  text-align: center; color: #F8F6F0;
+}
+.cta-banner h2 { color: #F8F6F0; margin-bottom: 0.5em; }
+.cta-banner p { max-width: 600px; margin: 0 auto 1.5em; color: rgba(248,246,240,0.85); }
+
+/* ========== FOOTER ========== */
+.site-footer {
+  background: #252825; color: rgba(248,246,240,0.6); padding: 48px 0 28px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.88rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px; margin-bottom: 36px;
+}
+@media (max-width: 740px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+.footer-brand-row {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 10px;
+}
+.footer-logo-wrap {
+  width: 42px; height: 42px;
+  background: #F8F6F0;
+  border-radius: 50%;
+  border: 1px solid #B49A62;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+.footer-logo-wrap::after {
+  content: "LOGO";
+  position: absolute;
+  color: #173D32;
+  font-family: Georgia, serif;
+  font-weight: 700; font-size: 0.6rem; letter-spacing: 0.05em;
+  z-index: 0;
+}
+.footer-logo {
+  width: 100%; height: 100%; object-fit: contain;
+  position: relative; z-index: 1; padding: 3px;
+}
+.footer-brand .brand-name { font-size: 1rem; color: #F8F6F0; }
+.footer-brand .brand-tagline { margin-top: 2px; }
+.footer-brand p { margin-top: 12px; font-size: 0.85rem; }
+.site-footer h4 { color: #B49A62; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+.site-footer ul { list-style: none; }
+.site-footer li { margin-bottom: 8px; }
+.site-footer a { color: rgba(248,246,240,0.6); text-decoration: none; font-size: 0.85rem; }
+.site-footer a:hover { color: #B49A62; }
+.footer-bottom {
+  border-top: 1px solid rgba(248,246,240,0.1);
+  padding-top: 20px; text-align: center; font-size: 0.8rem;
+}
+
+/* ========== SOCIAL ICONS (TikTok and X) ========== */
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+}
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(248,246,240,0.08);
+  border: 1px solid rgba(180,154,98,0.4);
+  color: rgba(248,246,240,0.75);
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.2s;
+}
+.social-icons a:hover,
+.social-icons a:focus-visible {
+  background: #B49A62;
+  color: #173D32;
+  border-color: #B49A62;
+  transform: translateY(-2px);
+}
+.social-icons svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  display: block;
+}
+
+/* ========== RESPONSIVE POLISH ========== */
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .hero { padding: 48px 0 40px; }
+  .brand-tagline { display: none; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand" aria-label="Marvellous Literary Intelligence home">
+      <!-- LOGO DROP-IN: save your logo as logo.png in this folder and it will appear here -->
+      <span class="brand-logo-wrap">
+        <img src="Marvellous Literary Emblem.png" alt="Marvellous Literary Intelligence official logo" class="brand-logo">
+      </span>
+      <span class="brand-text">
+        <span class="brand-name">Marvellous Literary Intelligence</span>
+        <span class="brand-tagline">Book Discovery &amp; Marketing Strategist</span>
+      </span>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle sr-only" aria-label="Toggle navigation">
+    <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </label>
+    <nav class="main-nav" aria-label="Primary navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="sample-analysis.html">Sample</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<main id="main-content">
+<section class="hero">
+  <div class="container">
+    <h1>Your book is published.<br>But can the <em>right readers</em> find it?</h1>
+    <p class="hero-sub">Most authors are told to publish and promote. Very few are shown why their book is not being discovered, or what specific, evidence-based steps could change that. That is where I come in.</p>
+    <div class="hero-ctas">
+      <a href="services.html" class="btn btn-primary">Explore the Services</a>
+      <a href="contact.html" class="btn btn-secondary">Tell Me About Your Book</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== VISIBILITY PROBLEM ==================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>The Visibility Problem Nobody Explains</h2>
+      <hr class="gold-line">
+      <p>Millions of books compete for attention in the online marketplace. Many good books remain invisible, not because they lack quality, but because the path between the book and the reader who might value it has gaps that no one has investigated.</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <h3>Books Get Published, Then Disappear</h3>
+        <p>A book can be well-written, well-designed, and professionally edited, and still struggle to reach readers. Publication alone does not create discoverability.</p>
+      </div>
+      <div class="problem-card">
+        <h3>The Cause Is Rarely Obvious</h3>
+        <p>Low visibility is usually the result of several connected issues: listing presentation, metadata, positioning, reader targeting, or platform gaps. Fixing one without understanding the others can waste time and money.</p>
+      </div>
+      <div class="problem-card">
+        <h3>Generic Advice Does Not Work for Every Book</h3>
+        <p>Every book has its own audience, competition, and marketplace context. What works for one title in one genre may be irrelevant for another. Discoverability deserves investigation, not assumptions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MY STORY ==================== -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="story-grid">
+      <div>
+        <h2>Why I Started Investigating</h2>
+        <hr class="gold-line gold-line--left">
+        <p>I grew up around books from a very young age. One thing that has always bothered me is seeing good books get lost among millions of titles competing for attention on Amazon and across the online book marketplace.</p>
+        <p>That frustration made me ask a question that shaped everything I do now: <strong>Why does this keep happening, and why do the readers who might value a book sometimes never discover it?</strong></p>
+        <p>I decided to investigate the problem instead of accepting it. That became the foundation of Marvellous Literary Intelligence.</p>
+        <p>For the past 10 years, I have helped authors address low or limited online visibility, improve how their books are presented and discovered online, and create better opportunities to reach readers.</p>
+        <p><a href="about.html">Read the full story</a></p>
+      </div>
+      <!-- DROP-IN IMAGE: save your image as the filename shown and it will appear here -->
+      <div class="img-slot aspect-3-2">
+        <div class="img-label"><strong>Image Placeholder</strong>books-on-desk-with-research-notes.png</div>
+        <img src="Working desk with books and laptop.jpg" alt="Books arranged on a desk with handwritten research notes">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FIVE SERVICES ==================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>Five Ways I Help Authors Close the Visibility Gap</h2>
+      <hr class="gold-line">
+      <p>Each service addresses a different part of the discoverability challenge. You can start wherever your book needs the most attention and build from there.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="img-slot aspect-16-9">
+          <div class="img-label"><strong>Image Placeholder</strong>book-discoverability-intelligence.png</div>
+          <img src="book discover.jpg" alt="Book discoverability intelligence service visual">
+        </div>
+        <div class="service-card-body">
+          <h3>Book Discoverability Intelligence</h3>
+          <p>A detailed investigation into how your book appears and performs in the online marketplace, covering your listing, metadata, categories, comparable titles, reader language, and more.</p>
+          <a href="book-discoverability.html" class="service-card-link">Learn more</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="img-slot aspect-16-9">
+          <div class="img-label"><strong>Image Placeholder</strong>book-marketing-strategy.png</div>
+          <img src="book marketig.jpg" alt="Book marketing strategy service visual">
+        </div>
+        <div class="service-card-body">
+          <h3>Book Marketing Strategy</h3>
+          <p>A tailored marketing plan built around your book, your readers, your goals, and your resources, covering positioning, channels, timelines, and practical next steps.</p>
+          <a href="book-marketing-strategy.html" class="service-card-link">Learn more</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="img-slot aspect-16-9">
+          <div class="img-label"><strong>Image Placeholder</strong>author-platform-intelligence.png</div>
+          <img src="authorplatform.jpg" alt="Author platform intelligence service visual">
+        </div>
+        <div class="service-card-body">
+          <h3>Author Platform Intelligence</h3>
+          <p>An audit of your author website, online presence, and reader journey, examining how well your platform connects your books with the people looking for them.</p>
+          <a href="author-platform.html" class="service-card-link">Learn more</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="img-slot aspect-16-9">
+          <div class="img-label"><strong>Image Placeholder</strong>book-marketing-implementation.png</div>
+          <img src="implemetatio service .png" alt="Book marketing implementation service visual">
+        </div>
+        <div class="service-card-body">
+          <h3>Book Marketing Implementation</h3>
+          <p>From rewritten book descriptions to promotional graphics, book trailers, social content, and launch emails: bringing your strategy to life with professional assets.</p>
+          <a href="marketing-implementation.html" class="service-card-link">Learn more</a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="img-slot aspect-16-9">
+          <div class="img-label"><strong>Image Placeholder</strong>ongoing-marketing-support.png</div>
+          <img src="ongoing marketing support.png" alt="Ongoing marketing support service visual">
+        </div>
+        <div class="service-card-body">
+          <h3>Ongoing Marketing Support</h3>
+          <p>Continued strategic guidance, campaign coordination, content support, and regular reviews, helping you sustain visibility across your catalogue over time.</p>
+          <a href="ongoing-marketing.html" class="service-card-link">Learn more</a>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align: center; margin-top: 2.5em;">
+      <a href="services.html" class="btn btn-primary">View All Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RESEARCH-LED PROCESS ==================== -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-intro">
+      <h2>A Research-Led Process</h2>
+      <hr class="gold-line">
+      <p>I do not start with assumptions about what is wrong. I start with investigation. Every recommendation is grounded in evidence gathered from your book's actual marketplace context.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <h4>Listen</h4>
+        <p>You tell me about your book, your goals, and the challenges you have experienced so far.</p>
+      </div>
+      <div class="process-step">
+        <h4>Investigate</h4>
+        <p>I research your book's listing, positioning, competition, reader landscape, and online presence.</p>
+      </div>
+      <div class="process-step">
+        <h4>Analyse</h4>
+        <p>I identify what may be limiting discoverability and where the strongest opportunities may exist.</p>
+      </div>
+      <div class="process-step">
+        <h4>Recommend</h4>
+        <p>You receive prioritised, practical findings so you can decide what to act on first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SAMPLE ANALYSIS PREVIEW ==================== -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="sample-preview">
+      <div>
+        <h2>See How an Analysis Works</h2>
+        <hr class="gold-line gold-line--left">
+        <p>If you have ever wondered what a discoverability investigation actually looks like, my sample analysis walkthrough shows you the kind of areas I examine and the format of findings I provide.</p>
+        <p>You will see illustrative examples of how I assess listing presentation, metadata, description clarity, comparable titles, reader language, and author-platform connections, with each finding linked to a possible next step.</p>
+        <p style="margin-top: 1.5em;"><a href="sample-analysis.html" class="btn btn-primary">View Sample Analysis</a></p>
+      </div>
+      <div class="img-slot aspect-4-3">
+        <div class="img-label"><strong>Image Placeholder</strong>sample-analysis-report-preview.png</div>
+        <img src="Copywriting and Retailer Page Audit.png" alt="Preview of a sample discoverability analysis report">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== HOW WE WORK ==================== -->
+<section class="section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>How We Work Together</h2>
+      <hr class="gold-line">
+      <p>Collaboration starts with a conversation and ends with clarity. Here is what you can expect at each stage.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-card">
+        <h3>Initial Enquiry</h3>
+        <p>You reach out with details about your book, your current situation, and what you are looking for. I will respond with questions and thoughts on what might be useful.</p>
+      </div>
+      <div class="how-card">
+        <h3>Scoping and Agreement</h3>
+        <p>We discuss what the work will cover, what you will receive, the timeline, and the fee, and agree on everything before starting.</p>
+      </div>
+      <div class="how-card">
+        <h3>Research and Delivery</h3>
+        <p>I conduct the analysis or produce the deliverables. You receive a clear, written document with findings, evidence, and recommended next steps.</p>
+      </div>
+      <div class="how-card">
+        <h3>Review and Next Steps</h3>
+        <p>We go through the findings together. You decide what to act on. If further support would be helpful, we can discuss what that looks like.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT PREVIEW ==================== -->
+<section class="section section--muted">
+  <div class="container">
+    <div class="about-preview">
+      <div>
+        <h2>About Marvellous Literary Intelligence</h2>
+        <hr class="gold-line gold-line--left">
+        <p>Our mission is to help close the visibility gap between books and the readers who may be interested in them. For the past 10 years, I have worked with authors to address low or limited online visibility, improve how their books are presented and discovered, and create better opportunities to reach readers.</p>
+        <p>We believe that low discoverability should be investigated, not automatically blamed on the book or the author. Evidence and research should guide what to improve, not guesswork, trends, or one-size-fits-all advice.</p>
+        <p><a href="about.html">Read more about my approach</a></p>
+      </div>
+      <div class="img-slot aspect-1-1">
+        <div class="img-label"><strong>Image Placeholder</strong>about-portrait-workspace.png</div>
+        <img src="Marvellous Literary Emblem.png" alt="Portrait or workspace image representing the brand">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RESOURCE PREVIEW ==================== -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section-intro">
+      <h2>Resources for Authors</h2>
+      <hr class="gold-line">
+      <p>Guides, frameworks, and insights to help you think more clearly about discoverability, positioning, and the reader journey, whether or not we work together.</p>
+    </div>
+    <div class="resource-list">
+      <div class="resource-item">
+        <h4>Understanding Book Discoverability</h4>
+        <p>What discoverability really means, why it matters, and the most common reasons books remain invisible online.</p>
+      </div>
+      <div class="resource-item">
+        <h4>Amazon Listing Fundamentals</h4>
+        <p>The key elements of your book's Amazon listing and how each one contributes to, or limits, reader discovery.</p>
+      </div>
+      <div class="resource-item">
+        <h4>Writing Book Descriptions That Connect</h4>
+        <p>How to think about your book description as a reader's first decision point, not a plot summary.</p>
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 2em;">
+      <a href="resources.html" class="btn btn-primary">Explore All Resources</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FINAL CTA ==================== -->
+<section class="section">
+  <div class="container">
+    <div class="cta-banner">
+      <h2>Ready to Find Out Why Your Book Is Not Being Discovered?</h2>
+      <p>Every investigation starts with a conversation. Tell me about your book, the challenges you are facing, and what you would like to understand, and I will let you know how I can help.</p>
+      <a href="contact.html" class="btn btn-primary">Tell Me About Your Book</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <span class="footer-logo-wrap">
+            <img src="Marvellous Literary Emblem.png" alt="Marvellous Literary Intelligence logo" class="footer-logo">
+          </span>
+          <div>
+            <div class="brand-name">Marvellous Literary Intelligence</div>
+            <div class="brand-tagline">Book Discovery &amp; Marketing Strategist</div>
+          </div>
+        </div>
+        <p>Understanding why books are not being discovered, and helping authors close the visibility gap.</p>
+
+        <!-- ==================== SOCIAL MEDIA ICONS ==================== -->
+        <div class="social-icons" aria-label="Social media">
+          <!-- Replace the href values with your actual TikTok and X profile URLs -->
+          <a href="https://www.tiktok.com/@marvelbookintel?lang=en" target="_blank" rel="noopener noreferrer" aria-label="Follow on TikTok" title="TikTok">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.07A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/>
+            </svg>
+          </a>
+          <a href="https://x.com/MarvBookIntel" target="_blank" rel="noopener noreferrer" aria-label="Follow on X" title="X (formerly Twitter)">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+        </div>
+        <!-- ============================================================== -->
+
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="book-discoverability.html">Discoverability Intelligence</a></li>
+          <li><a href="book-marketing-strategy.html">Marketing Strategy</a></li>
+          <li><a href="author-platform.html">Author Platform</a></li>
+          <li><a href="marketing-implementation.html">Implementation</a></li>
+          <li><a href="ongoing-marketing.html">Ongoing Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Learn More</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="sample-analysis.html">Sample Analysis</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact and Legal</h4>
+        <ul>
+          <li><a href="contact.html">Get in Touch</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Marvellous Literary Intelligence. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

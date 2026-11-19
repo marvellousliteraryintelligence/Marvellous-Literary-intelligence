@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Discoverability Intelligence | Marvellous Literary Intelligence</title>
+  <meta name="description" content="A detailed analysis of how your book appears in online retail environments. We examine the publicly visible signals that determine whether readers find your book or scroll past it.">
+  <link rel="icon" type="image/png" href="Marvellous Literary Emblem.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #252825;
+      background: #F8F6F0;
+      line-height: 1.72;
+      font-size: 1.05rem;
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      color: #173D32;
+      line-height: 1.28;
+      font-weight: 700;
+    }
+    h1 { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2.1rem); margin-bottom: 0.85rem; }
+    h3 { font-size: clamp(1.2rem, 2.2vw, 1.45rem); margin-bottom: 0.6rem; }
+    p { margin-bottom: 1.15rem; }
+    a { color: #173D32; text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: #B49A62; }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+    .container-narrow { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: #173D32;
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #F8F6F0;
+    }
+    .brand-logo-wrap {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #F8F6F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-logo { width: 100%; height: 100%; object-fit: cover; }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #F8F6F0;
+      line-height: 1.2;
+    }
+    .brand-tagline {
+      font-size: 0.72rem;
+      color: #B49A62;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .nav-toggle-label {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1001;
+    }
+    .nav-toggle-label span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: #F8F6F0;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .main-nav a {
+      color: #F8F6F0;
+      text-decoration: none;
+      font-size: 0.92rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .main-nav a:hover,
+    .main-nav a:focus {
+      background: rgba(248,246,240,0.12);
+      color: #B49A62;
+    }
+    .main-nav .nav-cta {
+      background: #B49A62;
+      color: #173D32;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+    }
+    .main-nav .nav-cta:hover {
+      background: #F8F6F0;
+      color: #173D32;
+    }
+    @media (max-width: 860px) {
+      .nav-toggle-label { display: flex; }
+      .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: #173D32;
+        padding: 1rem 1.5rem 1.5rem;
+        display: none;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      }
+      .main-nav ul {
+        flex-direction: column;
+        gap: 0.25rem;
+        align-items: stretch;
+      }
+      .main-nav a {
+        display: block;
+        padding: 0.7rem 0.5rem;
+        font-size: 1rem;
+      }
+      #nav-toggle:checked ~ .main-nav { display: block; }
+      #nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+      }
+      #nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+      #nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+      }
+    }
+
+    /* SECTIONS */
+    .section { padding: 4.5rem 0; }
+    .section--alt { background: #fff; }
+    .section--dark { background: #173D32; color: #F8F6F0; }
+    .section--dark h2, .section--dark h3 { color: #F8F6F0; }
+    .section--dark a { color: #B49A62; }
+    .section--dark a:hover { color: #F8F6F0; }
+    .section--muted { background: #eee9de; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #B49A62;
+      margin-bottom: 0.75rem;
+    }
+
+    /* HERO */
+    .hero {
+      background: #173D32;
+      color: #F8F6F0;
+      padding: 5rem 0 4rem;
+    }
+    .hero h1 { color: #F8F6F0; max-width: 780px; }
+    .hero p {
+      max-width: 640px;
+      color: rgba(248,246,240,0.85);
+      font-size: 1.12rem;
+    }
+    .hero .section-label { color: #B49A62; }
+    .breadcrumb {
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      color: rgba(248,246,240,0.55);
+    }
+    .breadcrumb a { color: rgba(248,246,240,0.7); text-decoration: none; }
+    .breadcrumb a:hover { color: #B49A62; }
+
+    /* IMAGE PLACEHOLDER */
+    .img-slot {
+      position: relative;
+      background: #ddd8cc;
+      border: 2px dashed #B49A62;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-slot .img-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #8a7e6b;
+      font-size: 0.88rem;
+      text-align: center;
+      padding: 1rem;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .img-slot .img-label strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: #6b6152;
+    }
+    .img-slot img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .aspect-16-9 { aspect-ratio: 16/9; }
+    .aspect-4-3 { aspect-ratio: 4/3; }
+    .aspect-3-2 { aspect-ratio: 3/2; }
+    .aspect-1-1 { aspect-ratio: 1/1; }
+
+    /* CONTENT BLOCKS */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @media (max-width: 760px) {
+      .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .check-list {
+      list-style: none;
+      margin: 1rem 0 1.5rem;
+    }
+    .check-list li {
+      padding: 0.55rem 0 0.55rem 2rem;
+      position: relative;
+      border-bottom: 1px solid #e8e3d9;
+    }
+    .check-list li:last-child { border-bottom: none; }
+    .check-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: #173D32;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .process-steps {
+      list-style: none;
+      counter-reset: step;
+      margin: 1.5rem 0;
+    }
+    .process-steps li {
+      counter-increment: step;
+      padding: 1.25rem 0 1.25rem 3.5rem;
+      position: relative;
+      border-bottom: 1px solid rgba(248,246,240,0.12);
+    }
+    .process-steps li:last-child { border-bottom: none; }
+    .process-steps li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 1.25rem;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #B49A62;
+      opacity: 0.7;
+      line-height: 1;
+    }
+    .process-steps li strong {
+      display: block;
+      color: #F8F6F0;
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+    .process-steps li span {
+      color: rgba(248,246,240,0.78);
+      font-size: 0.95rem;
+    }
+
+    /* CALLOUT */
+    .callout {
+      background: #fff;
+      border-left: 4px solid #B49A62;
+      padding: 1.5rem 1.75rem;
+      border-radius: 0 6px 6px 0;
+      margin: 2rem 0;
+    }
+    .callout p { margin-bottom: 0; color: #555; font-size: 0.97rem; }
+    .callout strong { color: #173D32; }
+
+    /* LIMITATIONS */
+    .limit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .limit-grid { grid-template-columns: 1fr; }
+    }
+    .limit-card {
+      background: #fff;
+      border-radius: 6px;
+      padding: 1.5rem;
+      border: 1px solid #e2ddd3;
+    }
+    .limit-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #173D32;
+    }
+    .limit-card p {
+      font-size: 0.93rem;
+      color: #666;
+      margin-bottom: 0;
+    }
+
+    /* RELATED */
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .related-card {
+      background: rgba(248,246,240,0.08);
+      border: 1px solid rgba(248,246,240,0.15);
+      border-radius: 6px;
+      padding: 1.5rem;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .related-card:hover {
+      background: rgba(248,246,240,0.14);
+      border-color: #B49A62;
+    }
+    .related-card h4 {
+      color: #F8F6F0;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .related-card p {
+      color: rgba(248,246,240,0.65);
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    /* CTA */
+    .cta-box {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .btn {
+      display: inline-block;
+      background: #B49A62;
+      color: #173D32;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn:hover {
+      background: #173D32;
+      color: #F8F6F0;
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #173D32;
+      color: rgba(248,246,240,0.78);
+      padding: 3.5rem 0 0;
+      font-size: 0.92rem;
+    }
+    .site-footer h4 {
+      color: #F8F6F0;
+      font-size: 0.95rem;
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.03em;
+    }
+    .site-footer a {
+      color: rgba(248,246,240,0.72);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: #B49A62; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(248,246,240,0.12);
+    }
+    .footer-brand p { margin-top: 0.75rem; font-size: 0.88rem; line-height: 1.6; }
+    .footer-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .footer-logo-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #F8F6F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-logo { width: 100%; height: 100%; object-fit: cover; }
+    .footer-brand .brand-name {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 0.95rem;
+      color: #F8F6F0;
+      font-weight: 700;
+    }
+    .footer-brand .brand-tagline {
+      font-size: 0.68rem;
+      color: #B49A62;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .site-footer ul { list-style: none; }
+    .site-footer li { margin-bottom: 0.45rem; }
+    .footer-bottom {
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 0.82rem;
+      color: rgba(248,246,240,0.45);
+    }
+    .social-icons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(248,246,240,0.1);
+      transition: background 0.2s;
+    }
+    .social-icons a:hover { background: #B49A62; }
+    .social-icons svg {
+      width: 18px;
+      height: 18px;
+      fill: #F8F6F0;
+    }
+    @media (max-width: 860px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 540px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .section { padding: 3rem 0; }
+      .hero { padding: 3.5rem 0 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand" aria-label="Marvellous Literary Intelligence home">
+        <span class="brand-logo-wrap">
+          <img src="Marvellous Literary Emblem.png" alt="Marvellous Literary Intelligence official logo" class="brand-logo">
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Marvellous Literary Intelligence</span>
+          <span class="brand-tagline">Book Discovery &amp; Marketing Strategist</span>
+        </span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle sr-only" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="sample-analysis.html">Sample</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / <a href="services.html">Services</a> / Discoverability Intelligence</div>
+      <span class="section-label">Service 01</span>
+      <h1>Book Discoverability Intelligence</h1>
+      <p>A detailed examination of how your book appears in the online retail environments where readers search, browse, and make decisions. We identify the specific visibility gaps that may be keeping your book hidden from the audience it was written for.</p>
+    </div>
+  </section>
+
+  <!-- INTRO + IMAGE -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <h2>Why Most Books Go Unnoticed</h2>
+          <p>Millions of books are available on major online retailers at any given moment. When a reader types a search term, browses a category, or scrolls through recommendations, only a tiny fraction of those books will appear on their screen. The rest remain effectively invisible.</p>
+          <p>This is not usually a reflection of quality. Many well-written, carefully crafted books fail to reach readers simply because the signals that retailers use to surface books are misaligned, incomplete, or working against the author's intentions.</p>
+          <p>Book Discoverability Intelligence is designed to uncover those signals. We examine the publicly visible elements of your book's retail presence and compare them against the competitive landscape of your genre. The goal is to give you a clear, evidence-based picture of what readers actually see when they encounter your book online.</p>
+        </div>
+        <div>
+          <div class="img-slot aspect-4-3">
+            <div class="img-label"><strong>Image Placeholder</strong>book discover.jpg</div>
+            <img src="book discover.jpg" alt="Books displayed on an online retail platform showing search results and category browsing">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="section">
+    <div class="container-narrow">
+      <span class="section-label">The Problem</span>
+      <h2>The Visibility Gap Most Authors Never See</h2>
+      <p>As an author, you see your book from the inside. You know the story, the research, the care that went into every chapter. But readers do not arrive with that knowledge. They arrive with a search bar, a category list, or a recommendation algorithm, and they make fast decisions based on very limited information.</p>
+      <p>The problem is that the gap between what you know about your book and what a reader can discover in a few seconds is often much wider than you realise. Common issues include:</p>
+      <ul class="check-list">
+        <li>Metadata that does not match the terms your target readers actually use when searching</li>
+        <li>Category placements that position your book alongside the wrong competitors</li>
+        <li>Book descriptions that fail to communicate genre, tone, or appeal at a glance</li>
+        <li>Cover and title combinations that do not signal the right genre expectations</li>
+        <li>Missing or inconsistent author information across retail platforms</li>
+        <li>Keyword choices that are too broad, too narrow, or misaligned with reader intent</li>
+      </ul>
+      <p>These are not guesses. They are patterns we observe repeatedly when examining books that are struggling to gain traction despite their quality.</p>
+    </div>
+  </section>
+
+  <!-- SCOPE -->
+  <section class="section section--alt">
+    <div class="container-narrow">
+      <span class="section-label">Scope</span>
+      <h2>What This Service Covers</h2>
+      <p>Book Discoverability Intelligence focuses exclusively on the <strong>publicly visible signals</strong> that influence how your book appears in online retail environments. This is an important distinction, and we want to be transparent about what it means.</p>
+
+      <h3>What we can examine</h3>
+      <p>Our analysis is based on information that any reader or competitor can see when browsing online retailers. This includes:</p>
+      <ul class="check-list">
+        <li>Your book's title, subtitle, and series information as displayed on retailer pages</li>
+        <li>Your book description, including structure, readability, and genre signalling</li>
+        <li>Category and genre classifications assigned to your book on major platforms</li>
+        <li>The keywords and search terms your book appears to rank for, based on publicly observable search results</li>
+        <li>Your cover design's genre alignment and thumbnail legibility</li>
+        <li>Your author name consistency and author page completeness</li>
+        <li>Competitor positioning: how comparable books in your genre present themselves</li>
+        <li>Customer review patterns and ratings as publicly displayed</li>
+      </ul>
+
+      <h3>What we cannot access</h3>
+      <p>We want to be clear about the boundaries of this analysis. The following data is <strong>not</strong> available to us unless you choose to share it directly from your own author dashboard or publisher account:</p>
+      <ul class="check-list">
+        <li>Backend keyword fields and their configuration within retailer systems</li>
+        <li>Sales figures, conversion rates, or revenue data</li>
+        <li>Advertising performance metrics, click-through rates, or spend data</li>
+        <li>Private algorithmic ranking scores or internal retailer data</li>
+        <li>Reader demographics or purchase behaviour analytics</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>Why this matters:</strong> Any service that claims to analyse your private sales data, backend keywords, or advertising performance without direct access to your accounts is either making assumptions or misrepresenting its capabilities. We believe you deserve honesty about what is and is not possible from a public-facing analysis.</p>
+      </div>
+
+      <p>If you do choose to share dashboard data with us voluntarily, we can incorporate those insights into our recommendations. However, the core Discoverability Intelligence service is designed to deliver significant value using only publicly observable information.</p>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="section section--muted">
+    <div class="container-narrow">
+      <span class="section-label">Deliverables</span>
+      <h2>What You Will Receive</h2>
+      <p>At the conclusion of the analysis, you will receive a comprehensive written report that covers the following areas:</p>
+      <ul class="check-list">
+        <li><strong>Discoverability overview:</strong> a summary of how your book currently appears across major online retail platforms, including strengths and immediate concerns</li>
+        <li><strong>Metadata assessment:</strong> a detailed review of your title, subtitle, description, categories, and publicly observable keyword alignment</li>
+        <li><strong>Competitive landscape snapshot:</strong> an analysis of how comparable books in your genre position themselves and where your book sits within that landscape</li>
+        <li><strong>Visual presentation review:</strong> an evaluation of your cover, thumbnail readability, and overall genre signalling from a reader's perspective</li>
+        <li><strong>Author presence check:</strong> a review of how your author name and profile appear across retail platforms</li>
+        <li><strong>Prioritised recommendations:</strong> a clear list of specific, actionable steps you can take to improve your book's discoverability, ordered by likely impact</li>
+      </ul>
+      <p>The report is written in plain language. You do not need a background in marketing or publishing technology to understand and act on the findings.</p>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section section--dark">
+    <div class="container-narrow">
+      <span class="section-label">Our Process</span>
+      <h2>How the Analysis Works</h2>
+      <p style="color:rgba(248,246,240,0.82);">Every Book Discoverability Intelligence engagement follows a structured process designed to produce clear, actionable findings.</p>
+      <ol class="process-steps">
+        <li>
+          <strong>Initial consultation</strong>
+          <span>We begin with a written exchange to understand your book, your genre, your goals, and the specific challenges you are experiencing. You will be asked to share your book's retail links and any particular concerns you have noticed.</span>
+        </li>
+        <li>
+          <strong>Public-facing audit</strong>
+          <span>We conduct a thorough examination of your book's presence across major online retailers. This includes analysing your metadata, description, categories, cover presentation, and author profile as they appear to potential readers.</span>
+        </li>
+        <li>
+          <strong>Competitive analysis</strong>
+          <span>We identify comparable books in your genre and examine how they present themselves in the same retail environments. This helps us understand the standards and expectations your target readers are accustomed to.</span>
+        </li>
+        <li>
+          <strong>Search behaviour review</strong>
+          <span>We test a range of search terms and browsing paths that your target readers are likely to use, documenting where your book appears and where it does not.</span>
+        </li>
+        <li>
+          <strong>Report and recommendations</strong>
+          <span>We compile our findings into a detailed written report with prioritised recommendations. The report is delivered to you via email, and we are available to answer any follow-up questions you may have.</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- INTENDED AUDIENCE -->
+  <section class="section">
+    <div class="container-narrow">
+      <span class="section-label">Who This Is For</span>
+      <h2>Is This Service Right for You?</h2>
+      <p>Book Discoverability Intelligence is designed for authors who suspect their book is not reaching its potential audience and want to understand the specific reasons why. It is particularly relevant if you recognise yourself in any of the following situations:</p>
+      <ul class="check-list">
+        <li>You have published a book but are seeing very little organic visibility on major retail platforms</li>
+        <li>You have invested in marketing efforts but are unsure whether your book's retail presence is undermining those efforts</li>
+        <li>You are preparing to launch a new book and want to ensure your metadata and positioning are optimised from the start</li>
+        <li>You have published multiple books and want to understand why some perform better than others in terms of discoverability</li>
+        <li>You are a traditionally published author who wants an independent assessment of how your publisher has positioned your book online</li>
+      </ul>
+      <p>This service is not limited to any particular genre, format, or publishing path. Whether you are self-published, hybrid-published, or traditionally published, the discoverability challenges in online retail environments affect all authors.</p>
+    </div>
+  </section>
+
+  <!-- LIMITATIONS -->
+  <section class="section section--alt">
+    <div class="container-narrow">
+      <span class="section-label">Important Limitations</span>
+      <h2>What This Service Does Not Do</h2>
+      <p>Transparency is central to how we work. Before you enquire, we want you to understand the boundaries of this service clearly.</p>
+      <div class="limit-grid">
+        <div class="limit-card">
+          <h4>No guaranteed outcomes</h4>
+          <p>Implementing our recommendations may improve your book's visibility, but we cannot guarantee specific changes in sales, rankings, review counts, or search positions. Discoverability is influenced by many factors beyond metadata and positioning.</p>
+        </div>
+        <div class="limit-card">
+          <h4>No private data access</h4>
+          <p>We do not have access to your retailer dashboards, advertising accounts, sales data, or backend keyword configurations unless you voluntarily share that information with us.</p>
+        </div>
+        <div class="limit-card">
+          <h4>No implementation included</h4>
+          <p>This service provides analysis and recommendations. Actually making changes to your retailer listings, metadata, or marketing materials is a separate step. If you need hands-on support, our <a href="marketing-implementation.html">Implementation service</a> may be a good fit.</p>
+        </div>
+        <div class="limit-card">
+          <h4>Snapshot in time</h4>
+          <p>The analysis reflects your book's discoverability at the time of the audit. Retail environments, algorithms, and competitive landscapes change continuously. The findings represent a point-in-time assessment, not a permanent state.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED SERVICES -->
+  <section class="section section--dark">
+    <div class="container">
+      <div style="text-align:center; max-width:640px; margin:0 auto 0.5rem;">
+        <span class="section-label">Related Services</span>
+        <h2>What Comes Next?</h2>
+        <p style="color:rgba(248,246,240,0.8);">Discoverability Intelligence is often the first step in a broader strategy. Depending on what the analysis reveals, you may want to explore one or more of the following services.</p>
+      </div>
+      <div class="related-grid">
+        <a href="book-marketing-strategy.html" class="related-card">
+          <h4>Book Marketing Strategy</h4>
+          <p>Turn your discoverability findings into a comprehensive, actionable marketing plan tailored to your book and your goals.</p>
+        </a>
+        <a href="author-platform.html" class="related-card">
+          <h4>Author Platform Intelligence</h4>
+          <p>Examine how your broader author presence across the web supports or limits your book's discoverability.</p>
+        </a>
+        <a href="marketing-implementation.html" class="related-card">
+          <h4>Marketing Implementation</h4>
+          <p>Get hands-on support to act on the recommendations from your discoverability analysis, from metadata updates to copywriting.</p>
+        </a>
+        <a href="ongoing-marketing.html" class="related-card">
+          <h4>Ongoing Marketing Support</h4>
+          <p>Maintain momentum with regular check-ins and updated guidance as your book's situation evolves over time.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Get Started</span>
+        <h2>Ready to Understand Your Book's Visibility?</h2>
+        <p>If you would like to know why your book is not being discovered, we would like to hear from you. Send us a brief description of your book, your genre, and the challenges you are facing. We will respond with an honest assessment of whether this service is the right fit for your situation.</p>
+        <a href="contact.html" class="btn">Enquire About This Service</a>
+        <p style="margin-top:1.25rem; font-size:0.88rem; color:#888;">You can also email us directly at <a href="mailto:MarvellousLiteraryIntelligence@gmail.com">MarvellousLiteraryIntelligence@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <span class="footer-logo-wrap">
+              <img src="Marvellous Literary Emblem.png" alt="Marvellous Literary Intelligence logo" class="footer-logo">
+            </span>
+            <div>
+              <div class="brand-name">Marvellous Literary Intelligence</div>
+              <div class="brand-tagline">Book Discovery &amp; Marketing Strategist</div>
+            </div>
+          </div>
+          <p>Understanding why books are not being discovered, and helping authors close the visibility gap.</p>
+          <div class="social-icons" aria-label="Social media">
+            <a href="https://www.tiktok.com/@marvelbookintel?lang=en" target="_blank" rel="noopener noreferrer" aria-label="Follow on TikTok" title="TikTok">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.07A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/MarvBookIntel" target="_blank" rel="noopener noreferrer" aria-label="Follow on X" title="X (formerly Twitter)">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="book-discoverability.html">Discoverability Intelligence</a></li>
+            <li><a href="book-marketing-strategy.html">Marketing Strategy</a></li>
+            <li><a href="author-platform.html">Author Platform</a></li>
+            <li><a href="marketing-implementation.html">Implementation</a></li>
+            <li><a href="ongoing-marketing.html">Ongoing Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn More</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="sample-analysis.html">Sample Analysis</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact and Legal</h4>
+          <ul>
+            <li><a href="contact.html">Get in Touch</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Marvellous Literary Intelligence. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

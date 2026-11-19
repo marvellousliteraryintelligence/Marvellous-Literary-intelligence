@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Analysis | Marvellous Literary Intelligence</title>
+  <meta name="description" content="See an illustrative example of what a Book Discoverability Intelligence report looks like. This sample shows the structure, depth, and tone of our analysis using a fictional book.">
+  <link rel="icon" type="image/png" href="Marvellous Literary Emblem.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #252825;
+      background: #F8F6F0;
+      line-height: 1.72;
+      font-size: 1.05rem;
+    }
+    h1, h2, h3, h4, h5 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      color: #173D32;
+      line-height: 1.28;
+      font-weight: 700;
+    }
+    h1 { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2.1rem); margin-bottom: 0.85rem; }
+    h3 { font-size: clamp(1.2rem, 2.2vw, 1.45rem); margin-bottom: 0.6rem; }
+    p { margin-bottom: 1.15rem; }
+    a { color: #173D32; text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { color: #B49A62; }
+    img { max-width: 100%; height: auto; display: block; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
+    .container-narrow { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: #173D32;
+      padding: 0.85rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: #F8F6F0;
+    }
+    .brand-logo-wrap {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #F8F6F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-logo { width: 100%; height: 100%; object-fit: cover; }
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-name {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #F8F6F0;
+      line-height: 1.2;
+    }
+    .brand-tagline {
+      font-size: 0.72rem;
+      color: #B49A62;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .nav-toggle-label {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      z-index: 1001;
+    }
+    .nav-toggle-label span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: #F8F6F0;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .main-nav a {
+      color: #F8F6F0;
+      text-decoration: none;
+      font-size: 0.92rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .main-nav a:hover,
+    .main-nav a:focus {
+      background: rgba(248,246,240,0.12);
+      color: #B49A62;
+    }
+    .main-nav .nav-cta {
+      background: #B49A62;
+      color: #173D32;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      border-radius: 4px;
+    }
+    .main-nav .nav-cta:hover {
+      background: #F8F6F0;
+      color: #173D32;
+    }
+    @media (max-width: 860px) {
+      .nav-toggle-label { display: flex; }
+      .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: #173D32;
+        padding: 1rem 1.5rem 1.5rem;
+        display: none;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      }
+      .main-nav ul {
+        flex-direction: column;
+        gap: 0.25rem;
+        align-items: stretch;
+      }
+      .main-nav a {
+        display: block;
+        padding: 0.7rem 0.5rem;
+        font-size: 1rem;
+      }
+      #nav-toggle:checked ~ .main-nav { display: block; }
+      #nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+        transform: translateY(7.5px) rotate(45deg);
+      }
+      #nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+      #nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+        transform: translateY(-7.5px) rotate(-45deg);
+      }
+    }
+
+    /* SECTIONS */
+    .section { padding: 4.5rem 0; }
+    .section--alt { background: #fff; }
+    .section--dark { background: #173D32; color: #F8F6F0; }
+    .section--dark h2, .section--dark h3 { color: #F8F6F0; }
+    .section--dark a { color: #B49A62; }
+    .section--dark a:hover { color: #F8F6F0; }
+    .section--muted { background: #eee9de; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #B49A62;
+      margin-bottom: 0.75rem;
+    }
+
+    /* HERO */
+    .hero {
+      background: #173D32;
+      color: #F8F6F0;
+      padding: 5rem 0 4rem;
+    }
+    .hero h1 { color: #F8F6F0; max-width: 780px; }
+    .hero p {
+      max-width: 640px;
+      color: rgba(248,246,240,0.85);
+      font-size: 1.12rem;
+    }
+    .hero .section-label { color: #B49A62; }
+    .breadcrumb {
+      font-size: 0.85rem;
+      margin-bottom: 1.25rem;
+      color: rgba(248,246,240,0.55);
+    }
+    .breadcrumb a { color: rgba(248,246,240,0.7); text-decoration: none; }
+    .breadcrumb a:hover { color: #B49A62; }
+
+    /* IMAGE PLACEHOLDER */
+    .img-slot {
+      position: relative;
+      background: #ddd8cc;
+      border: 2px dashed #B49A62;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .img-slot .img-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #8a7e6b;
+      font-size: 0.88rem;
+      text-align: center;
+      padding: 1rem;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .img-slot .img-label strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: #6b6152;
+    }
+    .img-slot img {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .aspect-16-9 { aspect-ratio: 16/9; }
+    .aspect-4-3 { aspect-ratio: 4/3; }
+    .aspect-3-2 { aspect-ratio: 3/2; }
+    .aspect-1-1 { aspect-ratio: 1/1; }
+
+    /* SAMPLE REPORT STYLING */
+    .sample-report {
+      background: #fff;
+      border: 1px solid #e2ddd3;
+      border-radius: 8px;
+      padding: 2.5rem 2.5rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 20px rgba(23,61,50,0.06);
+    }
+    @media (max-width: 640px) {
+      .sample-report { padding: 1.5rem 1.25rem; }
+    }
+    .sample-report .report-header {
+      border-bottom: 2px solid #173D32;
+      padding-bottom: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .sample-report .report-header h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.35rem;
+    }
+    .sample-report .report-header p {
+      color: #888;
+      font-size: 0.88rem;
+      margin-bottom: 0;
+    }
+    .sample-report .report-section {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #eee9de;
+    }
+    .sample-report .report-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .sample-report .report-section h4 {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      color: #173D32;
+      font-size: 1.1rem;
+      margin-bottom: 0.65rem;
+    }
+    .sample-report .report-section p {
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.65;
+    }
+    .sample-report .report-section ul {
+      margin: 0.5rem 0 0.75rem 1.25rem;
+      font-size: 0.95rem;
+      color: #444;
+    }
+    .sample-report .report-section li {
+      margin-bottom: 0.4rem;
+    }
+    .sample-badge {
+      display: inline-block;
+      background: #B49A62;
+      color: #173D32;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 3px;
+      margin-bottom: 0.75rem;
+    }
+    .finding-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 3px;
+      margin-right: 0.35rem;
+      vertical-align: middle;
+    }
+    .finding-tag--concern {
+      background: #f4e4e4;
+      color: #8b3a3a;
+    }
+    .finding-tag--opportunity {
+      background: #e4f0e4;
+      color: #3a6b3a;
+    }
+    .finding-tag--neutral {
+      background: #eee9de;
+      color: #6b6152;
+    }
+
+    /* DISCLAIMER */
+    .disclaimer-box {
+      background: #fff8ec;
+      border: 1px solid #e8d9b8;
+      border-radius: 6px;
+      padding: 1.5rem 1.75rem;
+      margin: 2rem 0;
+    }
+    .disclaimer-box h3 {
+      font-size: 1.05rem;
+      color: #8b6914;
+      margin-bottom: 0.5rem;
+    }
+    .disclaimer-box p {
+      font-size: 0.93rem;
+      color: #6b5a2e;
+      margin-bottom: 0.5rem;
+    }
+    .disclaimer-box p:last-child { margin-bottom: 0; }
+
+    /* CONTENT BLOCKS */
+    .check-list {
+      list-style: none;
+      margin: 1rem 0 1.5rem;
+    }
+    .check-list li {
+      padding: 0.55rem 0 0.55rem 2rem;
+      position: relative;
+      border-bottom: 1px solid #e8e3d9;
+    }
+    .check-list li:last-child { border-bottom: none; }
+    .check-list li::before {
+      content: "\2713";
+      position: absolute;
+      left: 0;
+      color: #173D32;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* CTA */
+    .cta-box {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .btn {
+      display: inline-block;
+      background: #B49A62;
+      color: #173D32;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem 2.2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn:hover {
+      background: #173D32;
+      color: #F8F6F0;
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #173D32;
+      color: rgba(248,246,240,0.78);
+      padding: 3.5rem 0 0;
+      font-size: 0.92rem;
+    }
+    .site-footer h4 {
+      color: #F8F6F0;
+      font-size: 0.95rem;
+      margin-bottom: 0.85rem;
+      letter-spacing: 0.03em;
+    }
+    .site-footer a {
+      color: rgba(248,246,240,0.72);
+      text-decoration: none;
+    }
+    .site-footer a:hover { color: #B49A62; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(248,246,240,0.12);
+    }
+    .footer-brand p { margin-top: 0.75rem; font-size: 0.88rem; line-height: 1.6; }
+    .footer-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .footer-logo-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #F8F6F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-logo { width: 100%; height: 100%; object-fit: cover; }
+    .footer-brand .brand-name {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: 0.95rem;
+      color: #F8F6F0;
+      font-weight: 700;
+    }
+    .footer-brand .brand-tagline {
+      font-size: 0.68rem;
+      color: #B49A62;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .site-footer ul { list-style: none; }
+    .site-footer li { margin-bottom: 0.45rem; }
+    .footer-bottom {
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 0.82rem;
+      color: rgba(248,246,240,0.45);
+    }
+    .social-icons {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .social-icons a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(248,246,240,0.1);
+      transition: background 0.2s;
+    }
+    .social-icons a:hover { background: #B49A62; }
+    .social-icons svg {
+      width: 18px;
+      height: 18px;
+      fill: #F8F6F0;
+    }
+    @media (max-width: 860px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 540px) {
+      .footer-grid { grid-template-columns: 1fr; }
+      .section { padding: 3rem 0; }
+      .hero { padding: 3.5rem 0 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand" aria-label="Marvellous Literary Intelligence home">
+        <span class="brand-logo-wrap">
+          <img src="Marvellous Literary Emblem.png" alt="Marvellous Literary Intelligence official logo" class="brand-logo">
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Marvellous Literary Intelligence</span>
+          <span class="brand-tagline">Book Discovery &amp; Marketing Strategist</span>
+        </span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle sr-only" aria-label="Toggle navigation">
+      <label for="nav-toggle" class="nav-toggle-label" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </label>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="sample-analysis.html">Sample</a></li>
+          <li><a href="resources.html">Resources</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Sample Analysis</div>
+      <span class="section-label">See Our Work</span>
+      <h1>Sample Discoverability Analysis</h1>
+      <p>This page shows an abbreviated, illustrative example of what a Book Discoverability Intelligence report looks like. The book, author, and all findings below are entirely fictional and created solely to demonstrate the structure and tone of our analysis.</p>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section section--alt">
+    <div class="container-narrow">
+      <h2>What You Are About to Read</h2>
+      <p>When you commission a Book Discoverability Intelligence analysis, you receive a detailed written report that examines how your book appears in online retail environments from a reader's perspective. The report covers your metadata, description, categories, cover presentation, competitive positioning, and author presence.</p>
+      <p>The sample below is a condensed excerpt from a fictional report. It is not a real analysis of a real book. The purpose is to give you a sense of the structure, depth, and tone you can expect from an actual engagement. A full report is considerably more detailed and specific to your book's unique situation.</p>
+
+      <div class="disclaimer-box">
+        <h3>Important Disclaimer</h3>
+        <p><strong>Everything in the sample report below is illustrative.</strong> The book title, author name, genre, and all findings are fictional. They do not represent any real author, book, or analysis. No real book is being evaluated or criticised on this page.</p>
+        <p>The sample is intended to show the format and approach of our reporting, not to demonstrate specific outcomes or results. Your actual report would be based entirely on the observable realities of your own book's retail presence.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE -->
+  <section class="section">
+    <div class="container">
+      <div class="img-slot aspect-16-9" style="max-width:900px; margin:0 auto;">
+        <div class="img-label"><strong>Image Placeholder</strong>sample-analysis-report.png</div>
+        <img src="scurvity.jpg" alt="Illustrative example of a book discoverability analysis report displayed on a laptop screen">
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE REPORT -->
+  <section class="section section--muted">
+    <div class="container-narrow">
+      <div style="text-align:center; margin-bottom:2rem;">
+        <span class="section-label">Illustrative Excerpt</span>
+        <h2>Sample Report: Abridged and Fictional</h2>
+        <p style="color:#666; font-size:0.95rem;">The following is a condensed extract from a fictional discoverability report. All details are invented for demonstration purposes.</p>
+      </div>
+
+      <div class="sample-report">
+
+        <!-- Report Header -->
+        <div class="report-header">
+          <span class="sample-badge">Illustrative Sample Only</span>
+          <h3>Book Discoverability Intelligence Report</h3>
+          <p>Prepared for: [Fictional Author Name] | Book: <em>The Garden at the Edge of Rain</em> (Illustrative Title) | Genre: Contemporary Fiction | Date: [Illustrative Date]</p>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <div class="report-section">
+          <h4>1. Discoverability Overview</h4>
+          <p><em>The Garden at the Edge of Rain</em> is a well-presented contemporary fiction novel with a professionally designed cover and a clearly written description. However, our analysis identified several areas where the book's retail presence may be limiting its visibility to the readers most likely to enjoy it.</p>
+          <p>The book currently appears in two broad fiction categories on its primary retail platform, both of which are highly competitive and dominated by established authors with extensive review histories. This positioning means the book is competing for visibility against titles with significantly greater algorithmic momentum, which may reduce its chances of appearing in organic browse and recommendation results.</p>
+          <p>Overall, the book's retail page communicates quality and professionalism. The primary discoverability challenge is not presentation but positioning: the signals that retailers use to match books with readers appear to be misaligned with the specific subgenre and reader expectations that this book is best suited to serve.</p>
+        </div>
+
+        <!-- Section 2: Metadata -->
+        <div class="report-section">
+          <h4>2. Metadata Assessment (Excerpt)</h4>
+          <p><span class="finding-tag finding-tag--concern">Concern</span> <strong>Title and subtitle:</strong> The title is evocative and memorable, which is a strength for reader recall. However, it does not contain any genre-signalling keywords that would help retail algorithms associate the book with contemporary fiction, women's fiction, or literary fiction search queries. The book does not currently have a subtitle, which represents a missed opportunity to add discoverable context without altering the title itself.</p>
+          <p><span class="finding-tag finding-tag--opportunity">Opportunity</span> <strong>Book description:</strong> The description is well-written and emotionally engaging. It effectively communicates the tone and themes of the novel. However, the first two lines, which are the most critical for search visibility and browse conversion, focus on setting rather than character or conflict. Readers browsing in the contemporary fiction category typically respond more strongly to descriptions that foreground emotional stakes and relational dynamics in the opening lines.</p>
+          <p><span class="finding-tag finding-tag--neutral">Note</span> <strong>Categories:</strong> The book is currently listed in "Literary Fiction" and "General Contemporary Fiction." Both categories are accurate but extremely broad. Our analysis suggests that more specific subcategory placements, such as "Family Life Fiction" or "Small Town and Rural Fiction," may offer better visibility opportunities by reducing direct competition with high-volume titles.</p>
+        </div>
+
+        <!-- Section 3: Competitive -->
+        <div class="report-section">
+          <h4>3. Competitive Landscape Snapshot (Excerpt)</h4>
+          <p>We examined the retail presence of twelve comparable contemporary fiction titles published within a similar timeframe and targeting a similar readership. The following patterns emerged:</p>
+          <ul>
+            <li>The majority of comparable titles use subtitles that include at least one genre-specific keyword (e.g., "A Novel," "A Contemporary Fiction Novel," or a thematic descriptor).</li>
+            <li>Most comparable titles are listed in three or more specific subcategories rather than one or two broad ones.</li>
+            <li>The top-performing comparable titles in terms of visibility all feature descriptions that open with a character-driven hook rather than a setting description.</li>
+            <li>Several comparable titles include "Also Bought" associations with well-known authors in the women's fiction and book club fiction space, suggesting that category and keyword alignment may be helping retail algorithms make those connections.</li>
+          </ul>
+          <p>By comparison, <em>The Garden at the Edge of Rain</em> is positioned more broadly and with fewer genre-specific signals than most of its direct competitors. This does not reflect a deficiency in the book itself, but it may explain why the book is not surfacing as frequently in targeted searches and browse paths.</p>
+        </div>
+
+        <!-- Section 4: Key Findings -->
+        <div class="report-section">
+          <h4>4. Key Findings Summary</h4>
+          <p>The following are the most significant discoverability factors identified during this analysis, listed in order of likely impact:</p>
+          <ul>
+            <li><span class="finding-tag finding-tag--concern">High Impact</span> Category placements are too broad to compete effectively in the current landscape.</li>
+            <li><span class="finding-tag finding-tag--concern">High Impact</span> The absence of a subtitle limits keyword discoverability in search results.</li>
+            <li><span class="finding-tag finding-tag--opportunity">Medium Impact</span> The description's opening lines could be restructured to better align with reader expectations in the target subgenre.</li>
+            <li><span class="finding-tag finding-tag--opportunity">Medium Impact</span> The author profile on the primary retail platform is incomplete, which may reduce reader confidence and cross-title discoverability.</li>
+            <li><span class="finding-tag finding-tag--neutral">Lower Impact</span> The cover design is strong and genre-appropriate. No changes are recommended to the visual presentation.</li>
+          </ul>
+        </div>
+
+        <!-- Section 5: Recommendations -->
+        <div class="report-section">
+          <h4>5. Prioritised Recommendations (Excerpt)</h4>
+          <p><strong>Recommendation 1: Refine category placements.</strong> We recommend moving the book from its current broad categories into more specific subcategories that better reflect its themes and target readership. This change can typically be made through the retailer's dashboard or by contacting publisher support. The specific subcategories we recommend, along with the reasoning for each, are detailed in the full report.</p>
+          <p><strong>Recommendation 2: Add a descriptive subtitle.</strong> A subtitle such as "A Contemporary Novel of Family, Loss, and Renewal" would introduce genre-specific keywords into the book's metadata without altering the existing title. This can improve the book's relevance for targeted search queries while preserving the evocative quality of the original title.</p>
+          <p><strong>Recommendation 3: Restructure the description opening.</strong> We recommend rewriting the first two to three sentences of the book description to lead with the protagonist's emotional situation rather than the physical setting. A revised draft is included in the appendix of the full report for your consideration.</p>
+          <p style="color:#888; font-size:0.88rem; margin-top:1rem;"><em>[End of illustrative excerpt. A full report would include additional sections covering search behaviour testing, author presence review, visual presentation analysis, and a complete set of recommendations with implementation guidance.]</em></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT A FULL REPORT INCLUDES -->
+  <section class="section section--alt">
+    <div class="container-narrow">
+      <h2>What a Full Report Includes</h2>
+      <p>The sample above shows a small portion of what a complete Book Discoverability Intelligence report contains. A full engagement covers significantly more ground, including:</p>
+      <ul class="check-list">
+        <li>A comprehensive metadata audit covering title, subtitle, description, categories, and keyword alignment across multiple retail platforms</li>
+        <li>A detailed competitive landscape analysis with specific comparisons to comparable titles in your genre</li>
+        <li>Search behaviour testing documenting where your book appears and does not appear for relevant reader queries</li>
+        <li>A visual presentation review evaluating cover design, thumbnail readability, and genre signalling</li>
+        <li>An author presence assessment across retail and web platforms</li>
+        <li>A complete set of prioritised recommendations with specific implementation guidance</li>
+      </ul>
+      <p>Every report is tailored to the individual book. The structure, findings, and recommendations you receive will reflect the specific realities of your book's retail presence, not a template applied across multiple clients.</p>
+      <p>To learn more about the full scope of this service, visit our <a href="book-discoverability.html">Book Discoverability Intelligence</a> page.</p>
+    </div>
+  </section>
+
+  <!-- IMPORTANT REMINDERS -->
+  <section class="section section--dark">
+    <div class="container-narrow">
+      <h2>Important Reminders</h2>
+      <p style="color:rgba(248,246,240,0.82);">Before you consider commissioning an analysis, we want to reiterate a few important points about what our reports can and cannot do:</p>
+      <ul style="list-style:none; margin:1.5rem 0;">
+        <li style="padding:0.75rem 0; border-bottom:1px solid rgba(248,246,240,0.12); color:rgba(248,246,240,0.82);">
+          <strong style="color:#B49A62;">No guaranteed outcomes.</strong> Implementing the recommendations in a discoverability report may improve your book's visibility, but we cannot guarantee specific changes in sales, rankings, or search positions. Discoverability is influenced by many factors beyond metadata and positioning.
+        </li>
+        <li style="padding:0.75rem 0; border-bottom:1px solid rgba(248,246,240,0.12); color:rgba(248,246,240,0.82);">
+          <strong style="color:#B49A62;">Public data only.</strong> Our analysis is based on publicly visible information. We do not have access to your private sales data, backend keywords, advertising metrics, or retailer dashboard information unless you choose to share it.
+        </li>
+        <li style="padding:0.75rem 0; border-bottom:1px solid rgba(248,246,240,0.12); color:rgba(248,246,240,0.82);">
+          <strong style="color:#B49A62;">Snapshot in time.</strong> The analysis reflects your book's discoverability at the time of the audit. Retail environments, algorithms, and competitive landscapes change continuously.
+        </li>
+        <li style="padding:0.75rem 0; color:rgba(248,246,240,0.82);">
+          <strong style="color:#B49A62;">Honest assessment.</strong> We will tell you what we genuinely see, even when the findings are uncomfortable. Our goal is to help your book, not to flatter you.
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">Ready for Your Own Analysis?</span>
+        <h2>Let Us Examine Your Book's Discoverability</h2>
+        <p>If you would like to understand why your book is not reaching the readers it deserves, we would like to hear from you. Send us a brief description of your book, your genre, and the challenges you are facing. We will respond with an honest assessment of whether a discoverability analysis is the right next step for you.</p>
+        <a href="contact.html" class="btn">Enquire About an Analysis</a>
+        <p style="margin-top:1.25rem; font-size:0.88rem; color:#888;">You can also email us directly at <a href="mailto:MarvellousLiteraryIntelligence@gmail.com">MarvellousLiteraryIntelligence@gmail.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <span class="footer-logo-wrap">
+              <img src="Marvellous Literary Emblem.png" alt="Marvellous Literary Intelligence logo" class="footer-logo">
+            </span>
+            <div>
+              <div class="brand-name">Marvellous Literary Intelligence</div>
+              <div class="brand-tagline">Book Discovery &amp; Marketing Strategist</div>
+            </div>
+          </div>
+          <p>Understanding why books are not being discovered, and helping authors close the visibility gap.</p>
+          <div class="social-icons" aria-label="Social media">
+            <a href="https://www.tiktok.com/@marvelbookintel?lang=en" target="_blank" rel="noopener noreferrer" aria-label="Follow on TikTok" title="TikTok">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.07A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/>
+              </svg>
+            </a>
+            <a href="https://x.com/MarvBookIntel" target="_blank" rel="noopener noreferrer" aria-label="Follow on X" title="X (formerly Twitter)">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li><a href="book-discoverability.html">Discoverability Intelligence</a></li>
+            <li><a href="book-marketing-strategy.html">Marketing Strategy</a></li>
+            <li><a href="author-platform.html">Author Platform</a></li>
+            <li><a href="marketing-implementation.html">Implementation</a></li>
+            <li><a href="ongoing-marketing.html">Ongoing Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Learn More</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="sample-analysis.html">Sample Analysis</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact and Legal</h4>
+          <ul>
+            <li><a href="contact.html">Get in Touch</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Marvellous Literary Intelligence. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
