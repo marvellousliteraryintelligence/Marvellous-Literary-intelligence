@@ -1,0 +1,10 @@
+# robots.txt for Marvellous Literary Intelligence
+User-agent: *
+Allow: /
+
+# Prevent search engines from indexing utility and confirmation pages
+Disallow: /404.html
+Disallow: /thank-you.html
+
+# Sitemap Location
+Sitemap: https://www.marvellousliteraryintelligence.com/sitemap.xml
